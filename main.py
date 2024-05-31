@@ -2,6 +2,7 @@ from flask import Flask, request, send_file
 from PIL import Image, ImageDraw, ImageFont
 import io
 import textwrap
+import os
 
 app = Flask(__name__)
 
@@ -44,5 +45,5 @@ def generate_image():
     return send_file(img_io, mimetype='image/jpeg')
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
